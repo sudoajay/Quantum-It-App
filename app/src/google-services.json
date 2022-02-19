@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "732436177693",
+    "project_id": "quantumit-app",
+    "storage_bucket": "quantumit-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:732436177693:android:4c7e570d8069cdf09df7f4",
+        "android_client_info": {
+          "package_name": "com.sudoajay.quantumit_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "732436177693-f3u65314hvi3qp4ihptrls0rlrkakp6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV59M7TyC8mRYa_OAIqChrAh7xsRs6a_s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "732436177693-f3u65314hvi3qp4ihptrls0rlrkakp6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

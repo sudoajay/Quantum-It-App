@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_signup"
+    app:startDestination="@id/nav_login">
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.sudoajay.quantumit_app.ui.login.Login"
+        android:label="@string/action_login"
+        tools:layout="@layout/fragment_login">
+
+
+        <action
+            android:id="@+id/action_nav_login_to_sendFeedback"
+            app:destination="@id/sendFeedbackActivity" />
+
+
+        <action
+            android:id="@+id/action_open_signup"
+            app:destination="@id/nav_signup"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/slide_to_left" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_signup"
+        android:name="com.sudoajay.quantumit_app.ui.signUp.SignUp"
+        android:label="@string/action_signup"
+        tools:layout="@layout/fragment_signup">
+
+<!--        <action-->
+<!--            android:id="@+id/action_nav_signup_to_friendsActivity"-->
+<!--            app:destination="@id/friendsActivity"-->
+<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
+<!--            app:exitAnim="@anim/nav_default_exit_anim" />-->
+    </fragment>
+    <activity
+        android:id="@+id/sendFeedbackActivity"
+        android:name="com.sudoajay.quantumit_app.ui.sendFeedback.SendFeedback"
+        android:label="@string/send_feedback_text"
+        tools:layout="@layout/activity_send_feedback" />
+
+
+
+</navigation>

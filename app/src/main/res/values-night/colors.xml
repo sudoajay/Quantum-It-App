@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    App Theme Color-->
+    <color name="colorPrimaryDark">#121212</color>
+    <color name="colorPrimary">#121212</color>
+    <color name="colorAccent">#7DC4EC</color>
+    <color name="statusBarColor">#171717</color>
+
+    <!--    Activity-->
+    <color name="mainBgColor">#121212</color>
+    <color name="bgBoxColor">#171717</color>
+    <color name="swipeSchemeColor">#7DC4EC</color>
+    <color name="headingNormalTextColor">#dae1e7</color>
+
+
+    <!--    Login & Sign up-->
+    <color name="backgroundBoxColor">#272727</color>
+    <color name="backgroundButtonBoxColor">#272727</color>
+    <color name="textColor">#dae1e7</color>
+
+
+    <!--    Send Feedback // Reminder -->
+    <color name="boxTextColor">#dae1e7</color>
+    <color name="boxHoverColor">#7DC4EC</color>
+    <color name="errorBoxColor">#CF6679</color>
+    <color name="feedbackBoxBgColor">#272727</color>
+    <color name="dialogBgColorInfo">#272727</color>
+    <color name="systemInfoBgColor">#171717</color>
+
+    <!--    Friends-->
+    <color name="divider">#dae1e7</color>
+    <color name="swipeBgColor">#121212</color>
+    <color name="fadeTextColor">#dae1e7</color>
+
+</resources>
