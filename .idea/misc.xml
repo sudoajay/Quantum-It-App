@@ -3,11 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_round_redo.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/color_cursor.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/feedback_background_button.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/ic_close_window.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable/ic_done.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/ic_google.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/ic_image_small.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable/ic_round_redo.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/loginandsignup_button_effect.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
         <entry key="app/src/main/res/layout/activity_send_feedback.xml" value="0.35260416666666666" />

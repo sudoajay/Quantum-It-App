@@ -69,7 +69,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/emailOrPhone_TextInputLayout"
+                android:id="@+id/email_TextInputLayout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,7 +92,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/loginWith_TextView">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/emailOrPhone_TextInputLayoutEditText"
+                    android:id="@+id/email_TextInputLayoutEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textCursorDrawable="@drawable/color_cursor"
@@ -122,7 +122,7 @@
                 app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/emailOrPhone_TextInputLayout">
+                app:layout_constraintTop_toBottomOf="@+id/email_TextInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_TextInputLayoutEditText"
@@ -232,16 +232,33 @@
                 app:layout_constraintTop_toTopOf="@+id/useOtherMethod_TextView" />
 
             <ImageView
-                android:id="@+id/googleLogin_ImageView"
+                android:id="@+id/phoneLogin_ImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
                 android:contentDescription="@string/googleIcon_text"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/facebookLogin_ImageView"
+                app:layout_constraintEnd_toStartOf="@+id/googleLogin_ImageView"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/useOtherMethod_TextView"
+                app:layout_constraintTop_toBottomOf="@+id/useOtherMethod_TextView"
+                app:srcCompat="@drawable/ic_phone" />
+
+            <ImageView
+                android:id="@+id/googleLogin_ImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:onClick="@{() -> fragment.googleLogin()}"
+                android:contentDescription="@string/googleIcon_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/facebookLogin_ImageView"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/phoneLogin_ImageView"
                 app:layout_constraintTop_toBottomOf="@+id/useOtherMethod_TextView"
                 app:srcCompat="@drawable/ic_google" />
 
@@ -251,6 +268,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp"
+                android:onClick="@{() -> fragment.facebookLoginIn()}"
                 android:contentDescription="@string/googleIcon_text"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/useOtherMethod_TextView"

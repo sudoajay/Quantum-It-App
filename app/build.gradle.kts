@@ -63,6 +63,7 @@ dependencies {
     implementDependencyInjection()
     implementAndroidX()
     implementFirebaseGoogle()
+    implementExternalLibrary()
     implementTest()
     implementAndroidTest()
 }

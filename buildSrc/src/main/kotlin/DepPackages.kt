@@ -36,14 +36,17 @@ fun DependencyHandler.implementAndroidX(){
 }
 
 fun DependencyHandler.implementFirebaseGoogle(){
-//    add("implementation" , Dependencies.FireBase.playServiceAuth)
+    add("implementation" , Dependencies.FireBase.playServiceAuth)
 //    add("implementation" , Dependencies.FireBase.FirebaseCommonktx)
 
 
     add("implementation" ,platform(Dependencies.FireBase.fireBaseBom))
     add("implementation" ,Dependencies.FireBase.firBaseAnalytics)
     add("implementation" ,Dependencies.FireBase.firBaseAuth)
-    add("implementation" ,Dependencies.FireBase.firBaseDatabase)
+
+    add("implementation" ,Dependencies.FireBase.facebookLogin)
+
+//    add("implementation" ,Dependencies.FireBase.firBaseDatabase)
 //    add("implementation" ,Dependencies.FireBase.firBaseStorage)
 //
 //    add("implementation" ,Dependencies.FireBase.firebaseUiAuth)
@@ -67,8 +70,11 @@ fun DependencyHandler.implementNetwork(){
 //    add("implementation", Dependencies.Network.glide)
 //    add("kapt", Dependencies.Network.glideCompiler)
 
+}
 
-
+fun DependencyHandler.implementExternalLibrary(){
+    add("implementation",Dependencies.ExternalLibrary.shreyasPatilMaterialDialog)
+    add("implementation",Dependencies.ExternalLibrary.airbnbLottie)
 }
 fun DependencyHandler.implementTest() {
     add("testImplementation", Dependencies.Test.junit)

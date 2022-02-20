@@ -58,6 +58,12 @@ object Versions {
         const val extJunitKtx = "1.1.3"
 
 
+//        External library
+        const val shreyasPatilMaterialDialog = "2.2.3"
+        const val airbnbLottie = "3.3.6"
+        const val facebookLogin ="12.3.0"
+
+
 
     }
 }

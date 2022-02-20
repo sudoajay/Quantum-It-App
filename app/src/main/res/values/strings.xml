@@ -32,15 +32,15 @@
 
     <!--    Login $ Sign up-->
     <string name="alreadyHaveAn_text">Already\nhave an\nAccount?</string>
-    <string name="loginWith_text">Login with Email or Phone Number</string>
-    <string name="emailPhoneNumber_text">Email Or Phone Number</string>
+    <string name="loginWith_text">Login with Email</string>
+    <string name="emailPhoneNumber_text">Email</string>
     <string name="password_text">Password</string>
     <string name="troubleLogin_text">Trouble Logging In?</string>
     <string name="newUser_text">New User? Register Now</string>
     <string name="useOtherMethod_text">Use Other Method</string>
 
     <string name="hereYourFirstStep_text">Hers\'s\nyour first\nstep with\nus!</string>
-    <string name="fillTheForm_text">Sign-Up with Email or Phone Number</string>
+    <string name="fillTheForm_text">Sign-Up with Email</string>
     <string name="firstName_text">First Name</string>
     <string name="lastName_text">Last Name</string>
 
@@ -60,4 +60,15 @@
     <string name="action_signup">Sign-Up</string>
     <string name="action_sendFeedback">Send Feedback</string>
 
+
+<!--    Sign Up -->
+    <string name="resend">Resend</string>
+    <string name="verification_send_text">Verification Email Sent!</string>
+    <string name="please_verify_email_text">Please verify your email by clicking on the link sent to your email</string>
+    <string name="google_default_web_client_id">732436177693-f3u65314hvi3qp4ihptrls0rlrkakp6b.apps.googleusercontent.com</string>
+
+<!--Facebook ign in -->
+    <string name="facebook_app_id">373059550923833</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">5c305dd79ab4fd4bc8931318fe4820de</string>
 </resources>
