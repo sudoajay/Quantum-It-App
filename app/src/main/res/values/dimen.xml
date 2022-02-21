@@ -12,15 +12,10 @@
     <dimen name="divider_height">0.8dp</dimen>
     <dimen name="divider_inset">72dp</dimen>
 
-<!--    &lt;!&ndash;    Dark Bottom sheet&ndash;&gt;-->
-<!--    <dimen name="bottom_sheet_padding_bottom">32dp</dimen>-->
+    <!--    Dark Bottom sheet-->
+    <dimen name="bottom_sheet_padding_bottom">32dp</dimen>
 
 
-<!--    &lt;!&ndash;    Navigation Drawer&ndash;&gt;-->
-<!--    <dimen name="text_view_margin_gap">12dp</dimen>-->
-<!--    <dimen name="gap_margin_left_right">16dp</dimen>-->
 
-<!--    &lt;!&ndash;    Splash Screen&ndash;&gt;-->
-<!--    <dimen name="image_header_dimen">100dp</dimen>-->
 
 </resources>

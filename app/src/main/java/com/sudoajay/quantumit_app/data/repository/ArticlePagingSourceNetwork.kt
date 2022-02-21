@@ -13,7 +13,10 @@ import retrofit2.HttpException
 import java.io.IOException
 
 class ArticlePagingSourceNetwork(
-    private val newsApiInterface: NewsApiInterface, private val context: Context
+    private val newsApiInterface: NewsApiInterface,
+    private val context: Context,
+    private val searchValue: String,
+    private val dataType: Int
 ) : PagingSource<Int, Article>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
@@ -22,7 +25,11 @@ class ArticlePagingSourceNetwork(
 
         val page = params.key ?: STARTING_PAGE
         return try {
-            val response = newsApiInterface.getEverything(page = page)
+
+            val response = if (dataType == 1) newsApiInterface.getEverything(
+                search = searchValue,
+                page = page
+            ) else newsApiInterface.getTopHeadlines(search = searchValue, page = page)
             val article = response.articles
             Log.e("NewsTAG", "article -- ${article}")
 
@@ -33,13 +40,13 @@ class ArticlePagingSourceNetwork(
             )
 
         } catch (exception: IOException) {
-//            Toaster.showToast(context, context.getString(R.string.somethingWentWrong_text))
+            Toaster.showToast(context, "Exception  -----  ${exception.message}")
             Log.e("NewsTAG", "Exception  - ${exception.message}   ----  ${exception.message}")
 
             return LoadResult.Error(exception)
         } catch (exception: HttpException) {
             Log.e("NewsTAG", "Exception  - ${exception.message()}   ----  ${exception.message}")
-//            Toaster.showToast(context, context.getString(R.string.noInternetConnection_text))
+            Toaster.showToast(context, "Exception  - ${exception.message()}   ----  ${exception.message}")
 
             return LoadResult.Error(exception)
         }

@@ -1,5 +1,6 @@
 package com.sudoajay.quantumit_app.ui.news
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -11,24 +12,39 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.sudoajay.firebase_chat.helper.Toaster
 import com.sudoajay.quantumit_app.R
 import com.sudoajay.quantumit_app.data.repository.NewsPagingAdapter
 import com.sudoajay.quantumit_app.databinding.ActivityNewsApiBinding
 import com.sudoajay.quantumit_app.ui.BaseActivity
+import com.sudoajay.quantumit_app.ui.mainActivity.MainActivity
+import com.sudoajay.quantumit_app.ui.sendFeedback.SendFeedback
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import java.util.*
+
 
 class News : BaseActivity() {
     val viewModel: NewsViewModel by viewModels()
     lateinit var binding: ActivityNewsApiBinding
     private var isDarkTheme: Boolean = false
     private lateinit var newsPagingAdapter: NewsPagingAdapter
+    private lateinit var settingBottomSheet: SettingBottomSheet
+    private var doubleBackToExitPressedOnce = false
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var googleSignInClient: GoogleSignInClient
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +65,20 @@ class News : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        mAuth = FirebaseAuth.getInstance()
+        settingBottomSheet = SettingBottomSheet(viewModel)
+        googleSetUp()
         setReference()
+    }
+
+    private fun googleSetUp(){
+        val gso = GoogleSignInOptions
+            .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.google_default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
     private fun setReference() {
@@ -79,7 +108,7 @@ class News : BaseActivity() {
     }
 
     private fun setRecyclerView() {
-         newsPagingAdapter= NewsPagingAdapter()
+        newsPagingAdapter = NewsPagingAdapter()
 
         binding.recyclerView.apply {
             this.layoutManager = LinearLayoutManager(applicationContext)
@@ -87,6 +116,13 @@ class News : BaseActivity() {
         }
         refreshData()
 
+        viewModel.dataType.observeForever {
+            refreshData()
+        }
+
+    }
+
+    private fun callAPI() {
         lifecycleScope.launch {
             viewModel.callEverythingAPI()
                 .collectLatest { pagingData ->
@@ -95,14 +131,22 @@ class News : BaseActivity() {
                     newsPagingAdapter.submitData(pagingData = pagingData)
                 }
         }
-
-
     }
 
 
-
     private fun refreshData() {
-        viewModel.callEverythingAPI().asLiveData()
+        showProgressAndHideRefresh()
+        CoroutineScope(Dispatchers.IO).launch {
+            callAPI()
+            delay(2000)
+            viewModel.hideProgress.postValue(true)
+        }
+    }
+
+    private fun showProgressAndHideRefresh() {
+        if (binding.swipeRefresh.isRefreshing)
+            binding.swipeRefresh.isRefreshing = false
+        viewModel.hideProgress.value = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -154,7 +198,8 @@ class News : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> showNavigationDrawer()
-            R.id.setting_optionMenu -> openSetting()
+            R.id.logOut_optionMenu -> logOut()
+            R.id.sendFeedBack_optionMenu -> sendFeedBack()
             R.id.refresh_optionMenu -> refreshData()
             else -> return super.onOptionsItemSelected(item)
         }
@@ -163,18 +208,65 @@ class News : BaseActivity() {
     }
 
     private fun showNavigationDrawer() {
-//        navigationDrawerBottomSheet.show(
-//            supportFragmentManager.beginTransaction(),
-//            navigationDrawerBottomSheet.tag
-//        )
     }
 
 
     fun openSetting() {
-//        settingBottomSheet.show(
-//            supportFragmentManager.beginTransaction(),
-//            settingBottomSheet.tag
-//        )
+        settingBottomSheet.show(
+            supportFragmentManager.beginTransaction(),
+            settingBottomSheet.tag
+        )
 
+    }
+
+    private fun logOut() {
+        signOut()
+        finish()
+        val i = Intent(this, MainActivity::class.java)
+        i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(i)
+    }
+
+    private fun sendFeedBack() {
+        startActivity(
+            Intent(
+                applicationContext,
+                SendFeedback::class.java
+            )
+        )
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        signOut()
+    }
+
+    private fun signOut(){
+        mAuth.signOut()
+        googleSignInClient.signOut()
+    }
+
+    override fun onBackPressed() {
+        onBack()
+    }
+
+    private fun onBack() {
+        if (doubleBackToExitPressedOnce) {
+            closeApp()
+            return
+        }
+        doubleBackToExitPressedOnce = true
+        Toaster.showToast(applicationContext, getString(R.string.click_back_text))
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(2000L)
+            doubleBackToExitPressedOnce = false
+        }
+    }
+
+    private fun closeApp() {
+        val homeIntent = Intent(Intent.ACTION_MAIN)
+        homeIntent.addCategory(Intent.CATEGORY_HOME)
+        homeIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(homeIntent)
     }
 }

@@ -82,4 +82,13 @@
     <!--    Error-->
     <string name="somethingWentWrong_text">Something Went Wrong</string>
     <string name="noInternetConnection_text">No Internet Connection</string>
+
+<!--    Setting -->
+    <string name="select_data_type_text">Select News Type</string>
+    <string name="everything_text">Everything</string>
+    <string name="top_heading_text">Top Heading</string>
+
+    <string name="click_back_text">Click Back Again To Exit</string>
+    <string name="logOut_optionMenu">Log out</string>
+
 </resources>

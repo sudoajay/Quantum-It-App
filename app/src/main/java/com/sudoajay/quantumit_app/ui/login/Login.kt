@@ -21,7 +21,6 @@ import com.sudoajay.firebase_chat.helper.Toaster
 import com.sudoajay.quantumit_app.R
 import com.sudoajay.quantumit_app.databinding.FragmentLoginBinding
 import com.sudoajay.quantumit_app.ui.BaseActivity
-import com.sudoajay.quantumit_app.ui.news.News
 import com.sudoajay.quantumit_app.ui.social.FaceBookAuthActivity
 import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog
 
@@ -32,8 +31,7 @@ class Login : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private var TAG = "LoginTAG"
     private lateinit var googleSignInClient: GoogleSignInClient
-//    private lateinit var callbackManager: CallbackManager
-//    private lateinit var buttonFacebookLogin: LoginButton
+
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -53,7 +51,8 @@ class Login : Fragment() {
         return binding.root
 
     }
-    private fun googleSetUp(){
+
+    private fun googleSetUp() {
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.google_default_web_client_id))
@@ -131,7 +130,8 @@ class Login : Fragment() {
                 // Sign in success, update UI with the signed-in user's information
                 Log.i(TAG, "createUserWithEmail:success")
                 if (isVerifiedEmail()) {
-                    Navigation.findNavController(binding.root).navigate(R.id.action_nav_login_to_News)
+                    Navigation.findNavController(binding.root)
+                        .navigate(R.id.action_nav_login_to_News)
                 }
 
             } else {
@@ -159,7 +159,7 @@ class Login : Fragment() {
         firebaseUser?.sendEmailVerification()?.addOnSuccessListener {
             emailSent()
         }?.addOnFailureListener { exception ->
-            Toaster.showToast(requireContext(), "$exception error")
+            throwToaster("$exception error")
         }
     }
 
@@ -225,25 +225,23 @@ class Login : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    Toaster.showToast(requireContext(),"successfuly login")
-                    val intent = Intent(requireContext(), News::class.java)
-                    startActivity(intent)
+                    Navigation.findNavController(binding.root)
+                        .navigate(R.id.action_nav_login_to_News)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    Toaster.showToast(requireContext(),"except -  ${task.exception} ")
+                    throwToaster("${task.exception} ")
                 }
             }
     }
 
 
-    fun facebookLoginIn(){
+    fun facebookLoginIn() {
         val intent = Intent(requireContext(), FaceBookAuthActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
         startActivity(intent)
 
     }
-
 
 
     companion object {

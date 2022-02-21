@@ -14,6 +14,7 @@ import com.facebook.login.LoginResult
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.sudoajay.quantumit_app.ui.mainActivity.MainActivity
+import com.sudoajay.quantumit_app.ui.news.News
 import java.lang.reflect.Array
 
 
@@ -67,7 +68,7 @@ class FaceBookAuthActivity : MainActivity() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    onBackPressed()
+                    sendNews()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -76,6 +77,12 @@ class FaceBookAuthActivity : MainActivity() {
 
                 }
             }
+    }
+
+    fun sendNews(){
+        val intent = Intent(this, News::class.java)
+        startActivity(intent)
+
     }
 
 

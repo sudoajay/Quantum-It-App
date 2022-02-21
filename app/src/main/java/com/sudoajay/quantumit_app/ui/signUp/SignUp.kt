@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -220,12 +221,12 @@ class SignUp : Fragment() {
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
-                    Toaster.showToast(requireContext(),"successfuly login")
-
+                    Navigation.findNavController(binding.root)
+                        .navigate(R.id.action_nav_signup_to_News)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    Toaster.showToast(requireContext(),"except -  ${task.exception} ")
+                   throwToaster("except -  ${task.exception} ")
                 }
             }
     }

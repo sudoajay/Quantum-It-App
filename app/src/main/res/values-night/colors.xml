@@ -4,12 +4,11 @@
     <color name="colorPrimaryDark">#121212</color>
     <color name="colorPrimary">#121212</color>
     <color name="colorAccent">#7DC4EC</color>
-    <color name="statusBarColor">#171717</color>
 
     <!--    Activity-->
+    <color name="statusBarColor">#121212</color>
     <color name="mainBgColor">#121212</color>
     <color name="bgBoxColor">#171717</color>
-    <color name="swipeSchemeColor">#7DC4EC</color>
     <color name="headingNormalTextColor">#dae1e7</color>
 
 

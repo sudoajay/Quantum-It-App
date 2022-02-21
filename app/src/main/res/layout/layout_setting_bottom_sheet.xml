@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.os.Build.VERSION"/>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.sudoajay.quantumit_app.ui.news.NewsViewModel" />
+        <variable
+            name="bottomSheet"
+            type="com.sudoajay.quantumit_app.ui.news.SettingBottomSheet" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mainBgColor"
+        android:paddingBottom="@dimen/bottom_sheet_padding_bottom">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="35dp"
+            android:layout_height="5dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bottom_sheet_top_effect"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/ShowBy_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/lato"
+            android:text="@string/select_data_type_text"
+            android:textColor="@color/headingNormalTextColor"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/off_ConstraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="?selectableItemBackground"
+            android:onClick="@{() -> bottomSheet.setValue(1)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ShowBy_TextView">
+
+            <TextView
+                android:id="@+id/off_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/lato"
+                android:maxLines="1"
+                android:text="@string/everything_text"
+                android:textColor="@color/headingNormalTextColor"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/off_ImageView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/off_ImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:visibility="@{(viewModel.dataType == 1)  ?  View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/off_TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/off_TextView"
+                app:srcCompat="@drawable/ic_tick"
+                tools:ignore="ContentDescription"
+                app:tint="@color/fadeTextColor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/on_ConstraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:background="?selectableItemBackground"
+            android:onClick="@{() -> bottomSheet.setValue(2)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/off_ConstraintLayout">
+
+            <TextView
+                android:id="@+id/on_TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/top_heading_text"
+                android:textColor="@color/headingNormalTextColor"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/on_ImageView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/on_ImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:visibility="@{(viewModel.dataType == 2)  ?  View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="@+id/on_TextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/on_TextView"
+                app:layout_constraintVertical_bias="0.261"
+                app:srcCompat="@drawable/ic_tick"
+                app:tint="@color/fadeTextColor"
+                tools:ignore="ContentDescription" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -20,12 +20,14 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
     private val _application = application
 
-    var searchValue = ""
+    var searchValue: String = "tesla"
+    var dataType: MutableLiveData<Int> = MutableLiveData()
 
     var hideProgress: MutableLiveData<Boolean> = MutableLiveData()
 
     init {
         loadHideProgress()
+        dataType.value = 1
 
     }
 
@@ -43,7 +45,9 @@ class NewsViewModel @Inject constructor(application: Application) : AndroidViewM
             pagingSourceFactory = {
                 ArticlePagingSourceNetwork(
                     apiInterface!!,
-                    _application
+                    _application,
+                    searchValue,
+                    dataType.value ?: 1
                 )
             }
         ).flow.cachedIn(viewModelScope)
