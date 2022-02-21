@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Quantum It App</string>
+    <string name="news_text">News API</string>
 
     <!--    Send Feedback-->
     <string name="send_feedback_text">Send Feedback</string>
@@ -61,14 +62,24 @@
     <string name="action_sendFeedback">Send Feedback</string>
 
 
-<!--    Sign Up -->
+    <!--    Sign Up -->
     <string name="resend">Resend</string>
     <string name="verification_send_text">Verification Email Sent!</string>
     <string name="please_verify_email_text">Please verify your email by clicking on the link sent to your email</string>
     <string name="google_default_web_client_id">732436177693-f3u65314hvi3qp4ihptrls0rlrkakp6b.apps.googleusercontent.com</string>
 
-<!--Facebook ign in -->
+    <!--Facebook ign in -->
     <string name="facebook_app_id">373059550923833</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">5c305dd79ab4fd4bc8931318fe4820de</string>
+
+
+    <!--  MainActivity  Bottom Toolbar-->
+    <string name="search_optionMenu">Search</string>
+    <string name="refresh_optionMenu">Refresh</string>
+    <string name="setting_optionMenu">Setting</string>
+
+    <!--    Error-->
+    <string name="somethingWentWrong_text">Something Went Wrong</string>
+    <string name="noInternetConnection_text">No Internet Connection</string>
 </resources>

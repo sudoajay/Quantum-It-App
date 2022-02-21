@@ -55,20 +55,20 @@ fun DependencyHandler.implementFirebaseGoogle(){
 }
 
 fun DependencyHandler.implementDataBase(){
-//    add("implementation", Dependencies.Storage.preferenceDataStore)
+    add("implementation", Dependencies.Storage.paging)
 //    add("implementation", Dependencies.Storage.protoDataStore)
 //    add("implementation", Dependencies.Storage.protobuf)
 
 }
 
 fun DependencyHandler.implementNetwork(){
-//    add("implementation", Dependencies.Network.retrofit)
-//    add("implementation", Dependencies.Network.retrofitConverterGson)
-//    add("implementation", Dependencies.Network.googleGson)
-//    add("implementation", Dependencies.Network.okhttp)
-//    add("implementation", Dependencies.Network.loggingInterceptor)
-//    add("implementation", Dependencies.Network.glide)
-//    add("kapt", Dependencies.Network.glideCompiler)
+    add("implementation", Dependencies.Network.retrofit)
+    add("implementation", Dependencies.Network.retrofitConverterGson)
+    add("implementation", Dependencies.Network.googleGson)
+    add("implementation", Dependencies.Network.okhttp)
+    add("implementation", Dependencies.Network.loggingInterceptor)
+    add("implementation", Dependencies.Network.glide)
+    add("kapt", Dependencies.Network.glideCompiler)
 
 }
 

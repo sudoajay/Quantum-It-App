@@ -6,12 +6,13 @@
     <color name="colorAccent">#0277BD</color>
     <color name="statusBarColor">#41a9e4</color>
 
-    <!--Main Activity -->
+    <!--    Main Activity-->
+    <color name="statsBarColor">#ffffff</color>
 
-    <color name="mainBgColor">#ffffff</color>
-    <color name="bgBoxColor">#f7f7f7</color>
-    <color name="swipeSchemeColor">#0277BD</color>
+    <color name="bgBoxColor">#ffffff</color>
+    <color name="mainBgColor">#59FFFFFF</color>
     <color name="headingNormalTextColor">#353131</color>
+
 
     <!--    Login & Sign up-->
     <color name="backgroundBoxColor">#ffffff</color>

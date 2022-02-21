@@ -11,7 +11,7 @@ import com.sudoajay.quantumit_app.ui.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity() {
+open class MainActivity : BaseActivity() {
     var TAG = "MainActivityTAG"
 
     private lateinit var binding: ActivityMainBinding

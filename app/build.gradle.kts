@@ -59,10 +59,13 @@ android {
 }
 
 dependencies {
+
     implementBasicAndroid()
     implementDependencyInjection()
     implementAndroidX()
     implementFirebaseGoogle()
+    implementDataBase()
+    implementNetwork()
     implementExternalLibrary()
     implementTest()
     implementAndroidTest()

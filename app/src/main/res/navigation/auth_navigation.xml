@@ -22,6 +22,11 @@
             app:destination="@id/nav_signup"
             app:enterAnim="@anim/slide_from_right"
             app:exitAnim="@anim/slide_to_left" />
+        <action
+            android:id="@+id/action_nav_login_to_News"
+            app:destination="@id/News" />
+
+
     </fragment>
 
 
@@ -31,17 +36,24 @@
         android:label="@string/action_signup"
         tools:layout="@layout/fragment_signup">
 
-<!--        <action-->
-<!--            android:id="@+id/action_nav_signup_to_friendsActivity"-->
-<!--            app:destination="@id/friendsActivity"-->
-<!--            app:enterAnim="@anim/nav_default_enter_anim"-->
-<!--            app:exitAnim="@anim/nav_default_exit_anim" />-->
+
+        <action
+            android:id="@+id/action_nav_signup_to_News"
+            app:destination="@id/News" />
     </fragment>
     <activity
         android:id="@+id/sendFeedbackActivity"
         android:name="com.sudoajay.quantumit_app.ui.sendFeedback.SendFeedback"
         android:label="@string/send_feedback_text"
         tools:layout="@layout/activity_send_feedback" />
+
+
+    <activity
+        android:id="@+id/News"
+        android:name="com.sudoajay.quantumit_app.ui.news.News"
+        android:label="@string/news_text"
+        tools:layout="@layout/activity_news_api" />
+
 
 
 

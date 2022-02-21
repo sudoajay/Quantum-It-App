@@ -20,6 +20,7 @@ import com.sudoajay.quantumit_app.R
 import com.sudoajay.quantumit_app.databinding.FragmentSignupBinding
 import com.sudoajay.quantumit_app.ui.BaseActivity
 import com.sudoajay.quantumit_app.ui.login.Login
+import com.sudoajay.quantumit_app.ui.social.FaceBookAuthActivity
 import dagger.hilt.android.AndroidEntryPoint
 import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog
 
@@ -188,7 +189,7 @@ class SignUp : Fragment() {
         mBottomSheetDialog.show()
     }
 
-    fun googleSignIn() {
+    fun googleLogin() {
         // Configure Google Sign In
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, Login.RC_SIGN_IN)
@@ -227,6 +228,13 @@ class SignUp : Fragment() {
                     Toaster.showToast(requireContext(),"except -  ${task.exception} ")
                 }
             }
+    }
+
+    fun facebookLoginIn(){
+        val intent = Intent(requireContext(), FaceBookAuthActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        startActivity(intent)
+
     }
 
 

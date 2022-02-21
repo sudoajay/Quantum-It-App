@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
@@ -22,6 +21,8 @@ import com.sudoajay.firebase_chat.helper.Toaster
 import com.sudoajay.quantumit_app.R
 import com.sudoajay.quantumit_app.databinding.FragmentLoginBinding
 import com.sudoajay.quantumit_app.ui.BaseActivity
+import com.sudoajay.quantumit_app.ui.news.News
+import com.sudoajay.quantumit_app.ui.social.FaceBookAuthActivity
 import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog
 
 
@@ -62,27 +63,6 @@ class Login : Fragment() {
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
     }
 
-    private fun facebookSetUp(){
-        // Initialize Facebook Login button
-//        callbackManager = CallbackManager.Factory.create()
-//
-//        buttonFacebookLogin.setReadPermissions("email", "public_profile")
-//        buttonFacebookLogin.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
-//            override fun onSuccess(loginResult: LoginResult) {
-//                Log.d(TAG, "facebook:onSuccess:$loginResult")
-//                handleFacebookAccessToken(loginResult.accessToken)
-//            }
-//
-//            override fun onCancel() {
-//                Log.d(TAG, "facebook:onCancel")
-//            }
-//
-//            override fun onError(error: FacebookException) {
-//                Log.d(TAG, "facebook:onError", error)
-//            }
-//        })
-
-    }
 
     private fun reference() {
         mAuth = FirebaseAuth.getInstance()
@@ -151,7 +131,7 @@ class Login : Fragment() {
                 // Sign in success, update UI with the signed-in user's information
                 Log.i(TAG, "createUserWithEmail:success")
                 if (isVerifiedEmail()) {
-
+                    Navigation.findNavController(binding.root).navigate(R.id.action_nav_login_to_News)
                 }
 
             } else {
@@ -246,7 +226,8 @@ class Login : Fragment() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     Toaster.showToast(requireContext(),"successfuly login")
-
+                    val intent = Intent(requireContext(), News::class.java)
+                    startActivity(intent)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
@@ -257,6 +238,9 @@ class Login : Fragment() {
 
 
     fun facebookLoginIn(){
+        val intent = Intent(requireContext(), FaceBookAuthActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        startActivity(intent)
 
     }
 
