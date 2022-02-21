@@ -114,7 +114,7 @@ class News : BaseActivity() {
             this.layoutManager = LinearLayoutManager(applicationContext)
             this.adapter = newsPagingAdapter
         }
-        refreshData()
+
 
         viewModel.dataType.observeForever {
             refreshData()
@@ -182,14 +182,16 @@ class News : BaseActivity() {
     private fun manageInputTextInSearchView(searchView: SearchView) {
         searchView.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
+            override fun onQueryTextSubmit(newText: String): Boolean {
+                val query: String = newText.lowercase(Locale.ROOT).trim { it <= ' ' }
+                viewModel.searchValue = query
+                refreshData()
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                val query: String = newText.lowercase(Locale.ROOT).trim { it <= ' ' }
-                viewModel.searchValue = query
-                refreshData()
+
+
                 return true
             }
         })

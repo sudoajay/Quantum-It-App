@@ -12,12 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity
-            android:name=".ui.news.News"
-            android:exported="false" />
-        <activity
-            android:name=".ui.social.FaceBookAuthActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ui.mainActivity.MainActivity"
             android:exported="true">
@@ -27,6 +22,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.news.News"
+            android:exported="false" />
+        <activity
+            android:name=".ui.social.FaceBookAuthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.sendFeedback.SendFeedback"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

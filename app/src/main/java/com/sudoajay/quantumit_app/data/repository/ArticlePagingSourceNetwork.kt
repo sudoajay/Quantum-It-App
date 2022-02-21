@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.sudoajay.firebase_chat.helper.Toaster
-import com.sudoajay.quantumit_app.R
 import com.sudoajay.quantumit_app.data.NewsApiInterface
 import com.sudoajay.quantumit_app.data.NewsApiInterface.Companion.STARTING_PAGE
 import com.sudoajay.quantumit_app.model.Article
@@ -40,13 +39,26 @@ class ArticlePagingSourceNetwork(
             )
 
         } catch (exception: IOException) {
-            Toaster.showToast(context, "Exception  -----  ${exception.message}")
-            Log.e("NewsTAG", "Exception  - ${exception.message}   ----  ${exception.message}")
+
+            Log.e("NewsTAG", "Exception -  ${exception.message}")
+            Log.e("NewsTAG", "Exception- ${exception.message}")
 
             return LoadResult.Error(exception)
         } catch (exception: HttpException) {
-            Log.e("NewsTAG", "Exception  - ${exception.message()}   ----  ${exception.message}")
-            Toaster.showToast(context, "Exception  - ${exception.message()}   ----  ${exception.message}")
+            Log.e("NewsTAG", "Exception das  - ${exception.message()}   ----  ${exception.message}")
+            when {
+                exception.message.toString().contains("HTTP 429") -> Toaster.showToast(
+                    context,
+                    "Exception - Too Many Requests"
+                )
+                exception.message.toString().contains("HTTP 500") -> {
+                    Toaster.showToast(context, "Exception - Server Error")
+                }
+                else -> {
+                    Toaster.showToast(context, "Exception - ${exception.message}")
+
+                }
+            }
 
             return LoadResult.Error(exception)
         }
